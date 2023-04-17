@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model address {
+  id           Int      @id(map: "address_pk") @default(autoincrement())
+  createdAt    DateTime @db.Timestamp(6)
+  updatedAt    DateTime @db.Timestamp(6)
+  street       String
+  neighborhood String
+  city         String
+  state        String
+  number       String
+  userId       Int
+  users        users    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "address_fk0")
+}
+
+model cart {
+  id            Int      @id(map: "cart_pk") @default(autoincrement())
+  createdAt     DateTime @db.Timestamp(6)
+  updatedAt     DateTime @db.Timestamp(6)
+  productId     Int
+  userId        Int
+  amountProduct Int
+  totalPrice    Int
+  products      products @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cart_fk0")
+  users         users    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cart_fk2")
+}
+
+model products {
+  id           Int          @id(map: "products_pk") @default(autoincrement())
+  createdAt    DateTime     @db.Timestamp(6)
+  updatedAt    DateTime     @db.Timestamp(6)
+  producTypeId Int
+  price        Int
+  image        String
+  productName  String
+  cart         cart[]
+  productsType productsType @relation(fields: [producTypeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "products_fk0")
+}
+
+model productsType {
+  id        Int        @id(map: "productsType_pk") @default(autoincrement())
+  createdAt DateTime   @db.Timestamp(6)
+  updatedAt DateTime   @db.Timestamp(6)
+  type      String
+  products  products[]
+}
+
+model session {
+  id        Int      @id(map: "session_pk") @default(autoincrement())
+  createdAt DateTime @db.Timestamp(6)
+  updatedAt DateTime @db.Timestamp(6)
+  userId    Int
+  token     String
+  users     users    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "session_fk0")
+}
+
+model users {
+  id           Int       @id(map: "users_pk") @default(autoincrement())
+  email        String
+  password     String
+  createdAt    DateTime  @db.Timestamp(6)
+  updatedAt    DateTime  @db.Timestamp(6)
+  completeName String
+  cpf          String
+  phone        String
+  address      address[]
+  cart         cart[]
+  session      session[]
+}
