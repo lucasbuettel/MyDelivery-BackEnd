@@ -7,15 +7,24 @@ async function findTypesId() {
 async function findByProductId(productTypeId:number) {
     return prisma.products.findMany({
         where: {
-            producTypeId:productTypeId
+            producTypeId:productTypeId,
         }
     })
     
 }
 
+async function findProductById(productId:number) {
+    return prisma.products.findFirst({
+        where: {
+            id:productId
+        }
+    })
+}
+
 const productRepository = {
     findTypesId,
-    findByProductId
+    findByProductId,
+    findProductById
 }
 
 export default productRepository

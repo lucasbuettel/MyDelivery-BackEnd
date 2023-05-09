@@ -3,6 +3,7 @@ import { cartParams } from "./../services/cart-service";
 
 
 async function createPostInCart({productId, userId, amountProduct, totalPrice}: cartParams) {
+    
     return prisma.cart.create({
         data:{
             productId,

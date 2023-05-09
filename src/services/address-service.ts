@@ -1,7 +1,7 @@
 import { AddressRepository } from "./../repositories/address-repository";
 
 async function createAdress(params: AddressParams) {
-    console.log(params);
+    
     try{
         const result = await AddressRepository.postAddress(params);
     }catch(err){

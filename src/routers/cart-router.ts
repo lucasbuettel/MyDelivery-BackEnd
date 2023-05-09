@@ -5,7 +5,7 @@ import { Router } from "express";
 const cartRouter = Router();
 
 cartRouter
-/* .all("/*", authenticateToken) */
+.all("/*", authenticateToken)
 .post("/", postProductsInCart)
 .get("/:userId", getProductsInCart)
 

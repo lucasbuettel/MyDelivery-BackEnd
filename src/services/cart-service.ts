@@ -12,6 +12,7 @@ async function postCart(params: cartParams) {
 
 async function getProductsCart(userId:number) {
     
+    
     try{
         const result = await cartRepository.findProductsCart(userId)
         return result;

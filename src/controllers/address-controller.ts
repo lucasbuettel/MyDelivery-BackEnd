@@ -18,7 +18,7 @@ export async function postAddress(req:AuthenticatedRequest, res: Response) {
 }
 
 export async function getAddressById(req:AuthenticatedRequest, res: Response) {
-  const {userId} = req.params;
+  const { userId } = req.params;
 
   try{
     const addressById = await addressService.getAddressById(Number(userId));

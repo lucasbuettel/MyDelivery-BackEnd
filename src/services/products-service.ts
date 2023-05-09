@@ -9,7 +9,7 @@ async function getTypes() {
     }
 }
 
-async function getProductsById(productTypeId:number) {
+async function getProductsByIdType(productTypeId:number) {
     
     try{
         const result = await productRepository.findByProductId(productTypeId)
@@ -20,8 +20,20 @@ async function getProductsById(productTypeId:number) {
     }
 }
 
+async function getProductsById(productId:number) {
+    try{
+        const result = await productRepository.findProductById(productId)
+        return result;
+
+    }catch(err){
+        console.log(err);
+    }
+    
+}
+
 const productService = {
     getTypes,
+    getProductsByIdType,
     getProductsById
 }
 

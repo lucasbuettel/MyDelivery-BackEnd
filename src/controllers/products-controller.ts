@@ -19,9 +19,22 @@ export async function getProductsType(req: AuthenticatedRequest, res: Response) 
 export async function getproductsByTypeId(req: AuthenticatedRequest, res: Response) {
 
     const { productTypeId } = req.params;
-    console.log(productTypeId);
     try {
-        const productsById = await productService.getProductsById(Number(productTypeId));
+        const productsById = await productService.getProductsByIdType(Number(productTypeId));
+        return res.status(httpStatus.OK).send(productsById);
+    }catch(err){
+        console.log(err);
+    }
+    
+
+}
+
+export async function getProductsById(req: AuthenticatedRequest, res: Response) {
+
+    const { productId } = req.params;
+   
+    try {
+        const productsById = await productService.getProductsById(Number(productId));
         return res.status(httpStatus.OK).send(productsById);
     }catch(err){
         console.log(err);
