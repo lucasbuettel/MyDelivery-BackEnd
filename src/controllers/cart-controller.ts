@@ -22,7 +22,7 @@ export async function getProductsInCart(req: AuthenticatedRequest, res: Response
     
     try {
         const productInCart = await cartService.getProductsCart(Number(userId));
-        /* console.log(postProductsInCart); */
+        /* console.log(productInCart); */
         return res.status(httpStatus.OK).send(productInCart);
     } catch (err) {
         res.send(err.message);
