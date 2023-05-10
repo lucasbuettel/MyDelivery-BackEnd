@@ -25,9 +25,19 @@ async function findProductsCart(userId:number) {
     
 }
 
+async function deleteProductById(productInCartId:number) {
+    /* console.log("repository   ", productInCartId); */
+    return prisma.cart.delete({
+        where: {
+            id:productInCartId
+        }
+    })
+}
+
 const cartRepository = {
     createPostInCart,
-    findProductsCart
+    findProductsCart,
+    deleteProductById
 }
 
 export default cartRepository

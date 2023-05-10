@@ -13,7 +13,7 @@ export async function postAddress(req:AuthenticatedRequest, res: Response) {
     return res.status(httpStatus.OK).send(address);
 
     }catch(err){
-      console.log(err);
+      res.send(err.message);
     }
 }
 
@@ -24,6 +24,6 @@ export async function getAddressById(req:AuthenticatedRequest, res: Response) {
     const addressById = await addressService.getAddressById(Number(userId));
     return res.status(httpStatus.OK).send(addressById);
   }catch(err){
-    console.log(err);
+    res.send(err.message);
   }
 }

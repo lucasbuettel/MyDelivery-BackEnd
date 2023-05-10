@@ -5,9 +5,9 @@ import httpStatus from "http-status";
 import * as jwt from "jsonwebtoken";
 
 export async function authenticateToken(req: AuthenticatedRequest, res: Response, next: NextFunction) {
-    /* console.log(req) */
+    
     const authHeader = req.header('Authorization');
-
+    
     if (!authHeader) {
         return generateUnauthorizedResponse(res);
     }

@@ -28,6 +28,6 @@ export async function signInPost (req: Request, res: Response){
         const token = await authenticationService.createSession(user.id);
         res.status(200).send(token);
     } catch (err) {
-        console.log(err);
+        res.send(err.message);
     }
 };

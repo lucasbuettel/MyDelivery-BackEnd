@@ -11,8 +11,7 @@ async function postCart(params: cartParams) {
 }
 
 async function getProductsCart(userId:number) {
-    
-    
+        
     try{
         const result = await cartRepository.findProductsCart(userId)
         return result;
@@ -22,9 +21,21 @@ async function getProductsCart(userId:number) {
     }
 }
 
+async function deleteProductInCart(productInCartId:number) {
+    try{
+        const result = await cartRepository.deleteProductById(productInCartId)
+        return result;
+
+    }catch(err){
+        console.log(err);
+    }
+    
+}
+
 const cartService = {
     postCart,
-    getProductsCart
+    getProductsCart,
+    deleteProductInCart
 }
 
 export default cartService;

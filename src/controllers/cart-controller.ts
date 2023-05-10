@@ -12,7 +12,7 @@ export async function postProductsInCart(req: AuthenticatedRequest, res: Respons
         return res.status(httpStatus.OK).send(cartShopping);
     }
     catch (err) {
-        console.log(err);
+        res.send(err.message);
     }
 }
 
@@ -25,8 +25,21 @@ export async function getProductsInCart(req: AuthenticatedRequest, res: Response
         /* console.log(postProductsInCart); */
         return res.status(httpStatus.OK).send(productInCart);
     } catch (err) {
-        console.log(err);
+        res.send(err.message);
     }
 
 
+}
+
+export async function deleteProduct(req:AuthenticatedRequest, res: Response) {
+    const {productInCartId} = req.body;
+    console.log(productInCartId);
+
+    try{
+        await cartService.deleteProductInCart(Number(productInCartId));
+        return res.status(httpStatus.OK);
+
+    }catch(err){
+        res.send(err.message);
+    }
 }

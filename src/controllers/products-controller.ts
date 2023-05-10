@@ -11,7 +11,7 @@ export async function getProductsType(req: AuthenticatedRequest, res: Response) 
 
 
     } catch (err) {
-        console.log(err)
+        res.send(err.message);
     }
 
 }
@@ -23,7 +23,7 @@ export async function getproductsByTypeId(req: AuthenticatedRequest, res: Respon
         const productsById = await productService.getProductsByIdType(Number(productTypeId));
         return res.status(httpStatus.OK).send(productsById);
     }catch(err){
-        console.log(err);
+        res.send(err.message);
     }
     
 
@@ -37,7 +37,7 @@ export async function getProductsById(req: AuthenticatedRequest, res: Response) 
         const productsById = await productService.getProductsById(Number(productId));
         return res.status(httpStatus.OK).send(productsById);
     }catch(err){
-        console.log(err);
+        res.send(err.message);
     }
     
 
